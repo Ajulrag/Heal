@@ -1,0 +1,52 @@
+<%- include('layout/header') %>
+<%- include('layout/sidebar') %>
+
+<main class="main">
+
+<header class="topbar">
+  <h2 class="page-title">Dashboard</h2>
+</header>
+
+<section class="view">
+
+<div class="dashboard-grid">
+
+  <div class="card card-status">
+    <div class="status-top">
+      <div class="status-info">
+        <div class="status-icon"><i class="fas fa-heartbeat"></i></div>
+        <div>
+          <h3 id="healthLabel">HEALTHY</h3>
+          <p class="muted">Last update: <span id="lastUpdate">—</span></p>
+        </div>
+      </div>
+
+      <div class="uv-panel">
+        <span class="uv-label">UV LIGHT</span>
+        <span class="uv-value">OFF</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-vitals">
+    <h4>Vitals</h4>
+
+    <div>
+      <span id="tempVal">-- °C</span><br>
+      <span id="moistVal">-- %</span>
+    </div>
+  </div>
+
+  <div class="card card-chart">
+    <canvas id="trendChart"></canvas>
+  </div>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="/js/dashboard.js"></script>
+
+<%- include('layout/footer') %>
