@@ -7,13 +7,21 @@
     </div>
   </div>
 
+  <!-- Patient Selector in Sidebar -->
+  <div class="patient-selector">
+    <label for="currentPatientSelect"><i class="fas fa-user-injured"></i> Current Patient</label>
+    <select id="currentPatientSelect" class="patient-dropdown">
+      <option value="">Select Patient</option>
+    </select>
+  </div>
+
   <nav class="menu">
-    <a href="/" class="menu-btn"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-    <a href="/patients" class="menu-btn"><i class="fas fa-procedures"></i> Patients</a>
-    <a href="/prescriptions" class="menu-btn"><i class="fas fa-prescription-bottle"></i> Prescriptions</a>
-    <a href="/treatment" class="menu-btn"><i class="fas fa-stethoscope"></i> Treatment</a>
-    <a href="/alerts" class="menu-btn"><i class="fas fa-bell"></i> Alerts</a>
-    <a href="/settings" class="menu-btn"><i class="fas fa-cog"></i> Settings</a>
+    <button class="menu-btn active" data-view="dashboard"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></button>
+    <button class="menu-btn" data-view="patients"><i class="fas fa-procedures"></i> <span class="menu-text">Patients</span></button>
+    <button class="menu-btn" data-view="prescriptions"><i class="fas fa-prescription-bottle"></i> <span class="menu-text">Prescriptions</span></button>
+    <button class="menu-btn" data-view="treatment"><i class="fas fa-stethoscope"></i> <span class="menu-text">Treatment</span></button>
+    <button class="menu-btn" data-view="alerts"><i class="fas fa-bell"></i> <span class="menu-text">Alerts</span></button>
+    <button class="menu-btn" data-view="settings"><i class="fas fa-cog"></i> <span class="menu-text">Settings</span></button>
   </nav>
 
   <div class="sidebar-footer">
