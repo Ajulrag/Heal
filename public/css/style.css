@@ -368,20 +368,20 @@ h4 {
 
 .status-icon {
   font-size: 44px;
-  color: var(--green);
+  color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
   width: 60px;
   height: 60px;
-  background: rgba(46, 125, 50, 0.1);
+  background: rgba(25, 118, 210, 0.08);
   border-radius: 12px;
 }
 
 .status-info h3 {
   font-size: 22px;
   font-weight: 700;
-  color: var(--green);
+  color: var(--text-dark);
   margin-bottom: 4px;
 }
 
@@ -472,16 +472,28 @@ h4 {
 
 .vital-desc {
   font-weight: 600;
-  color: var(--green);
+  color: var(--muted);
   margin-top: 4px;
   display: block;
+}
+
+/* Match vital indicator colors to chart series */
+.vital.temp .vital-value,
+.vital.temp .vital-desc,
+.vital.temp .vital-title i {
+  color: #ef4444;
+}
+.vital.moist .vital-value,
+.vital.moist .vital-desc,
+.vital.moist .vital-title i {
+  color: #3b82f6;
 }
 
 /* CHART */
 .card-chart {
   grid-column: 1/-1;
-  height: 280px;
-  min-height: 280px;
+  height: 520px;
+  min-height: 520px;
 }
 
 .chart-container {
@@ -490,6 +502,7 @@ h4 {
   position: relative;
 }
 
+.card-chart #trendChart,
 .card-chart canvas {
   width: 100% !important;
   height: 100% !important;
@@ -1276,6 +1289,11 @@ input:checked + .slider:before {
   
   .mobile-header {
     display: flex;
+  }
+  /* reduce chart size on tablet */
+  .card-chart {
+    height: 360px;
+    min-height: 360px;
   }
   
   .topbar {

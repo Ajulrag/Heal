@@ -43,7 +43,7 @@
         <div class="card card-vitals">
           <h4><i class="fas fa-heart"></i> Vitals</h4>
           <div class="vitals-grid">
-            <div class="vital">
+            <div class="vital temp">
               <span class="vital-title"><i class="fas fa-thermometer-half"></i> Temperature</span>
               <span class="vital-value" id="tempVal">-- °C</span>
               <span class="vital-desc" id="tempDesc">—</span>
@@ -58,9 +58,31 @@
 
         <!-- CHART -->
         <div class="card card-chart">
-          <h4><i class="fas fa-chart-line"></i> Trends (last 60 readings)</h4>
+          <div class="chart-header" style="display:flex;justify-content:space-between;align-items:center;">
+            <h4 style="margin:0"><i class="fas fa-chart-line"></i> Trends (1 day)</h4>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <label class="muted" for="rangeSelect">Range</label>
+              <select id="rangeSelect">
+                <option value="1m">1 min</option>
+                <option value="3m">3 min</option>
+                <option value="5m">5 min</option>
+                <option value="10m">10 min</option>
+                <option value="30m">30 min</option>
+                <option value="1h">1 hour</option>
+                <option value="5h">5 hours</option>
+                <option value="10h">10 hours</option>
+                <option value="1d">1 day</option>
+                <option value="7d">7 days</option>
+                <option value="30d">30 days</option>
+                <option value="3mo">3 months</option>
+                <option value="6mo">6 months</option>
+                <option value="1y">1 year</option>
+                <option value="all">All time</option>
+              </select>
+            </div>
+          </div>
           <div class="chart-container">
-            <canvas id="trendChart"></canvas>
+            <div id="trendChart"></div>
           </div>
         </div>
 
@@ -250,138 +272,25 @@
     <section id="settings" class="view hidden">
       <div class="card full">
         <h3><i class="fas fa-cog"></i> Settings</h3>
-        <div class="settings-tabs">
-          <button class="tab-btn active" data-tab="general">General</button>
-          <button class="tab-btn" data-tab="notifications">Notifications</button>
-          <button class="tab-btn" data-tab="uv">UV Treatment</button>
-          <button class="tab-btn" data-tab="system">System</button>
-        </div>
-        
-        <div class="tab-content active" id="generalTab">
-          <div class="settings-grid">
-            <div class="setting">
-              <label>Temperature threshold (°C)</label>
-              <input id="thTemp" type="number" step="0.1" value="38.0" />
-            </div>
-            <div class="setting">
-              <label>Moisture threshold (%)</label>
-              <input id="thMoist" type="number" step="1" value="80" />
-            </div>
-            <div class="setting">
-              <label>Simulated update interval (ms)</label>
-              <input id="simInterval" type="number" min="200" value="1500" />
-            </div>
-            <div class="setting">
-              <label>Autostart simulation</label>
-              <select id="autoStart">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
-            </div>
-            <div class="setting">
-              <label>Language</label>
-              <select id="language">
-                <option value="en">English</option>
-                <option value="es">Spanish</option>
-                <option value="fr">French</option>
-              </select>
-            </div>
+        <div class="settings-grid">
+          <div class="setting">
+            <label>Temperature threshold (°C)</label>
+            <input id="thTemp" type="number" step="0.1" value="38.0" />
           </div>
-        </div>
-        
-        <div class="tab-content" id="notificationsTab">
-          <div class="settings-grid">
-            <div class="setting toggle">
-              <label>Email notifications</label>
-              <label class="switch">
-                <input type="checkbox" id="emailNotifications" checked>
-                <span class="slider"></span>
-              </label>
-            </div>
-            <div class="setting toggle">
-              <label>Push notifications</label>
-              <label class="switch">
-                <input type="checkbox" id="pushNotifications" checked>
-                <span class="slider"></span>
-              </label>
-            </div>
-            <div class="setting toggle">
-              <label>Critical alerts only</label>
-              <label class="switch">
-                <input type="checkbox" id="criticalAlertsOnly">
-                <span class="slider"></span>
-              </label>
-            </div>
-            <div class="setting">
-              <label>Alert sound</label>
-              <select id="alertSound">
-                <option value="default">Default</option>
-                <option value="chime">Chime</option>
-                <option value="beep">Beep</option>
-                <option value="none">None</option>
-              </select>
-            </div>
+          <div class="setting">
+            <label>Moisture threshold (%)</label>
+            <input id="thMoist" type="number" step="1" value="80" />
           </div>
-        </div>
-        
-        <div class="tab-content" id="uvTab">
-          <div class="settings-grid">
-            <div class="setting">
-              <label>Auto UV duration (seconds)</label>
-              <input id="autoUvDuration" type="number" min="5" max="300" value="45" />
-              <small class="muted">Duration for automatic UV treatments when infection is detected</small>
-            </div>
-            <div class="setting">
-              <label>Scheduled UV duration (seconds)</label>
-              <input id="scheduledUvDuration" type="number" min="5" max="300" value="60" />
-              <small class="muted">Duration for scheduled UV treatments</small>
-            </div>
-            <div class="setting toggle">
-              <label>Auto UV treatment</label>
-              <label class="switch">
-                <input type="checkbox" id="autoUvEnabled" checked>
-                <span class="slider"></span>
-              </label>
-              <small class="muted">Automatically start UV when infection is detected</small>
-            </div>
-            <div class="setting">
-              <label>Max UV treatments per day</label>
-              <input id="maxUvPerDay" type="number" min="1" max="20" value="8" />
-              <small class="muted">Maximum number of UV treatments in 24 hours</small>
-            </div>
-            <div class="setting">
-              <label>UV intensity level</label>
-              <select id="uvIntensity">
-                <option value="low">Low</option>
-                <option value="medium" selected>Medium</option>
-                <option value="high">High</option>
-              </select>
-              <small class="muted">UV light intensity setting</small>
-            </div>
+          <div class="setting toggle">
+            <label>Auto enable UV</label>
+            <label class="switch">
+              <input type="checkbox" id="autoUvEnabled" checked>
+              <span class="slider"></span>
+            </label>
           </div>
-        </div>
-        
-        <div class="tab-content" id="systemTab">
-          <div class="settings-grid">
-            <div class="setting">
-              <label>Data retention (days)</label>
-              <input type="number" id="dataRetention" value="90" min="7" max="365">
-            </div>
-            <div class="setting">
-              <label>Auto backup frequency</label>
-              <select id="autoBackup">
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option>
-              </select>
-            </div>
-            <div class="setting toggle">
-              <label>Auto system updates</label>
-              <label class="switch">
-                <input type="checkbox" id="autoUpdates" checked>
-                <span class="slider"></span>
-              </label>
-            </div>
+          <div class="setting">
+            <label>Observation interval (minutes)</label>
+            <input id="observationInterval" type="number" min="1" value="5" />
           </div>
         </div>
         
