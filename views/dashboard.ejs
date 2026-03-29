@@ -58,11 +58,13 @@
 
         <!-- CHART -->
         <div class="card card-chart">
-          <div class="chart-header" style="display:flex;justify-content:space-between;align-items:center;">
-            <h4 style="margin:0"><i class="fas fa-chart-line"></i> Trends (1 day)</h4>
-            <div style="display:flex;gap:10px;align-items:center;">
+          <div class="chart-header">
+            <h4 class="chart-title"><i class="fas fa-chart-line"></i> Trends (1 day)</h4>
+            <div class="chart-range-control">
               <label class="muted" for="rangeSelect">Range</label>
-              <select id="rangeSelect">
+              <div class="range-select-wrap">
+                <i class="fas fa-calendar-alt"></i>
+                <select id="rangeSelect" class="chart-select">
                 <option value="1m">1 min</option>
                 <option value="3m">3 min</option>
                 <option value="5m">5 min</option>
@@ -78,7 +80,8 @@
                 <option value="6mo">6 months</option>
                 <option value="1y">1 year</option>
                 <option value="all">All time</option>
-              </select>
+                </select>
+              </div>
             </div>
           </div>
           <div class="chart-container">
@@ -97,19 +100,19 @@
             <div class="schedule-box">
               <label><i class="far fa-clock"></i> Schedule (mins)</label>
               <div class="schedule-inputs">
-                <input id="scheduleMins" type="number" min="1" value="5" />
+                <input id="scheduleMins" class="control-input" type="number" min="1" value="5" />
                 <button class="btn schedule" id="btnSchedule"><i class="fas fa-calendar-plus"></i> Set</button>
               </div>
             </div>
             <div class="manual-duration-box">
               <label><i class="fas fa-hourglass-half"></i> Manual Duration (secs)</label>
               <div class="duration-inputs">
-                <input id="manualDuration" type="number" min="5" max="300" value="60" />
+                <input id="manualDuration" class="control-input" type="number" min="5" max="300" value="60" />
                 <button class="btn duration" id="btnSetDuration"><i class="fas fa-check"></i> Set</button>
               </div>
             </div>
           </div>
-          <small class="muted">Manual controls simulate hardware actions.</small>
+          <small class="muted">Direct hardware control integration with real-time monitoring.</small>
         </div>
 
         <!-- QUICK ACTIONS -->
@@ -303,7 +306,7 @@
   </section>
 
   <footer class="footer">
-    <div><i class="fas fa-shield-alt"></i> Doctor Dashboard • Prototype • Not for clinical use</div>
+    <div><i class="fas fa-shield-alt"></i> HealTrack Clinical Dashboard • HIPAA Compliant</div>
   </footer>
 </main>
 

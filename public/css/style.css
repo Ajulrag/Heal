@@ -56,7 +56,7 @@ h4 {
   background: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding: 0 15px;
-  z-index: 1000;
+  z-index: 1200;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -94,6 +94,15 @@ h4 {
 
 .menu-toggle:hover {
   background: #f0f4f8;
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sidebar-backdrop {
+  display: none;
 }
 
 /* SIDEBAR */
@@ -494,11 +503,65 @@ h4 {
   grid-column: 1/-1;
   height: 520px;
   min-height: 520px;
+  overflow: hidden;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.chart-title {
+  margin: 0;
+}
+
+.chart-range-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f7fafd;
+  border: 1px solid #dce9f7;
+  border-radius: 10px;
+  padding: 7px 10px;
+}
+
+.range-select-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #dbe7f5;
+  border-radius: 8px;
+  padding: 0 10px;
+  min-height: 36px;
+}
+
+.range-select-wrap i {
+  color: var(--accent);
+  font-size: 13px;
+}
+
+.chart-select {
+  border: none;
+  background: transparent;
+  color: #1f2a44;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 2px 8px 0;
+  min-width: 112px;
+}
+
+.chart-select:focus {
+  outline: none;
 }
 
 .chart-container {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 56px);
+  min-height: 300px;
   position: relative;
 }
 
@@ -525,6 +588,17 @@ h4 {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 12px;
+  border: 1px solid #e6eef8;
+  border-radius: 10px;
+  background: #fafcff;
+}
+
+.schedule-box label,
+.manual-duration-box label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
 }
 
 .schedule-inputs, .duration-inputs {
@@ -532,6 +606,30 @@ h4 {
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.control-input {
+  width: 130px;
+  min-height: 42px;
+  border: 1px solid #cfdeef;
+  background: #fff;
+  color: #1f2937;
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.control-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.12);
+}
+
+.control-input::-webkit-outer-spin-button,
+.control-input::-webkit-inner-spin-button {
+  opacity: 1;
 }
 
 .btn {
@@ -597,6 +695,12 @@ h4 {
 .btn.secondary:hover {
   background: #e3eaf3;
   box-shadow: 0 2px 6px rgba(25, 118, 210, 0.15);
+}
+
+.btn.active {
+  background: var(--accent2);
+  color: white;
+  box-shadow: 0 4px 10px rgba(33, 150, 243, 0.35);
 }
 
 /* QUICK ACTIONS */
@@ -946,6 +1050,18 @@ h4 {
   flex-wrap: wrap;
 }
 
+.alert-filters .btn {
+  background: #eef4fb;
+  color: var(--accent);
+  border: 1px solid #d7e4f5;
+}
+
+.alert-filters .btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
 .alerts-list {
   display: flex;
   flex-direction: column;
@@ -1274,8 +1390,11 @@ input:checked + .slider:before {
   .sidebar {
     transform: translateX(-100%);
     position: fixed;
-    z-index: 1000;
+    z-index: 1100;
     width: 280px;
+    top: 60px;
+    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
   }
   
   .sidebar.open {
@@ -1290,10 +1409,40 @@ input:checked + .slider:before {
   .mobile-header {
     display: flex;
   }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 60px 0 0 0;
+    background: rgba(15, 23, 42, 0.28);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 1090;
+  }
+
+  .sidebar-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
   /* reduce chart size on tablet */
   .card-chart {
     height: 360px;
     min-height: 360px;
+  }
+
+  .chart-container {
+    height: calc(100% - 74px);
+    min-height: 240px;
+  }
+
+  .chart-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chart-range-control {
+    justify-content: space-between;
   }
   
   .topbar {
@@ -1413,6 +1562,10 @@ input:checked + .slider:before {
   .schedule-inputs, .duration-inputs {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .control-input {
+    width: 100%;
   }
   
   .form-actions {
