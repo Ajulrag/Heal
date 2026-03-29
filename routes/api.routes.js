@@ -10,6 +10,7 @@ router.post('/reading', ctrl.add);
 
 router.get('/settings', settingsCtrl.get);
 router.post('/settings', settingsCtrl.save);
+router.get('/uv', uvCtrl.getState);
 router.post('/uv', uvCtrl.control);
 
 module.exports = router;

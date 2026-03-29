@@ -12,7 +12,7 @@ async function sendUvCommand(command) {
   const res = await fetch('/api/uv', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ command })
+    body: JSON.stringify({ command, source: 'dashboard' })
   });
 
   let data = {};
@@ -28,6 +28,21 @@ async function sendUvCommand(command) {
   }
 
   return data;
+}
+
+async function loadUvState() {
+  const uvStatus = document.getElementById('uvStatus');
+  if (!uvStatus) return;
+
+  try {
+    const res = await fetch('/api/uv');
+    if (!res.ok) return;
+
+    const data = await res.json();
+    uvStatus.innerText = data.isOn ? 'ON' : 'OFF';
+  } catch (err) {
+    console.error('Failed to load UV state', err);
+  }
 }
 
 function windowToMillis(key) {
@@ -466,6 +481,7 @@ function setupUI() {
 
   setSettingsFormValues(getDefaultSettings());
   loadSettings();
+  loadUvState();
 
   // Range selector
   const rangeSelect = document.getElementById('rangeSelect');
