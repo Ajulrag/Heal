@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <!-- Outer circle background -->
+  <circle cx="30" cy="30" r="28" fill="#1e40af" opacity="0.95"/>
+  
+  <!-- Medical Cross - Main -->
+  <g transform="translate(30, 30)">
+    <!-- Vertical bar of cross -->
+    <rect x="-4" y="-12" width="8" height="24" fill="#ffffff" rx="2"/>
+    <!-- Horizontal bar of cross -->
+    <rect x="-12" y="-4" width="24" height="8" fill="#ffffff" rx="2"/>
+    
+    <!-- Heartbeat line accent -->
+    <path d="M -16 2 L -13 2 L -11 4 L -9 2 L -7 3 L -5 2 L -2 4 L 2 4 L 6 4 L 8 2 L 10 4 L 12 2" 
+          stroke="#10b981" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="70" y="22" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="700" fill="#1e40af" letter-spacing="-0.5">
+    Health
+  </text>
+  <text x="70" y="45" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="18" font-weight="500" fill="#10b981">
+    Tracker
+  </text>
+</svg>

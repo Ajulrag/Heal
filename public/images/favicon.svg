@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background -->
+  <rect width="64" height="64" fill="#1e40af" rx="8"/>
+  
+  <!-- Medical Cross with Heart -->
+  <g transform="translate(32, 32)">
+    <!-- Cross background -->
+    <rect x="-8" y="-12" width="16" height="24" fill="#ffffff" opacity="0.95"/>
+    <rect x="-12" y="-8" width="24" height="16" fill="#ffffff" opacity="0.95"/>
+    
+    <!-- Heartbeat line -->
+    <path d="M -18 -2 L -14 -2 L -12 0 L -10 -4 L -8 0 L -6 -2 L -4 0 L 0 0 L 4 0 L 6 -2 L 8 0 L 10 -4 L 12 0 L 14 -2 L 18 -2" 
+          stroke="#10b981" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

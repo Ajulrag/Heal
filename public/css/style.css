@@ -65,10 +65,15 @@ h4 {
 .mobile-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  color: var(--accent);
-  font-size: 18px;
+  justify-content: center;
+  flex: 1;
+}
+
+.mobile-logo {
+  height: 40px;
+  width: auto;
+  max-width: 160px;
+  display: block;
 }
 
 .mobile-user {
@@ -126,9 +131,18 @@ h4 {
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding-bottom: 10px;
+  justify-content: flex-start;
+  gap: 0;
+  padding-bottom: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 5px;
+}
+
+.brand-logo {
+  height: 55px;
+  width: auto;
+  max-width: 220px;
+  display: block;
 }
 
 .brand h1 {
